@@ -113,6 +113,7 @@ module Tunnelss::ConfigureWithPow
     @pow_domain_extensions ||= begin
       domains = `source #{ENV['HOME']}/.powconfig 2> /dev/null && echo $POW_DOMAINS`.chomp.split(',')
       domains = ['dev'] if domains.empty?
+      domains |= `source #{ENV['HOME']}/.powconfig 2> /dev/null && echo $POW_EXT_DOMAINS`.chomp.split(',')
       domains
     end
   end
